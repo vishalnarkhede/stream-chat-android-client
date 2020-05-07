@@ -1,6 +1,7 @@
 package io.getstream.chat.android.client.api
 
 import io.getstream.chat.android.client.api.models.*
+import io.getstream.chat.android.client.events.ChatEvent
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -340,6 +341,9 @@ interface RetrofitApi {
         @Query("user_id") userId: String,
         @Query("client_id") connectionId: String
     ): Call<CompletableResponse>
+
+    @GET("/devices")
+    abstract fun replayEvents(apiKey: String, connectionId: String, channelIds: List<String>, limit: Int, offset: Int): Call<List<ChatEvent>>
 
     // endregion
 }

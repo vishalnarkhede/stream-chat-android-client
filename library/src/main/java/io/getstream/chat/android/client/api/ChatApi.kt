@@ -6,6 +6,7 @@ import io.getstream.chat.android.client.events.ChatEvent
 import io.getstream.chat.android.client.models.*
 import io.getstream.chat.android.client.utils.ProgressCallback
 import java.io.File
+import java.util.Date
 
 interface ChatApi {
 
@@ -154,4 +155,7 @@ interface ChatApi {
         channelId: String,
         extraData: Map<Any, Any> = emptyMap()
     ): Call<ChatEvent>
+
+
+    fun replayEvents(channelIds: List<String>, since: Date?, limit: Int, offset: Int): Call<List<ChatEvent>>
 }

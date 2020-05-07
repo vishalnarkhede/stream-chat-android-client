@@ -671,6 +671,23 @@ class ChatApiImpl(
         }
     }
 
+    override fun replayEvents(
+        channelIds: List<String>,
+        since: Date?,
+        limit: Int,
+        offset: Int
+    ): Call<List<ChatEvent>> {
+        return callMapper.map(
+            retrofitApi.replayEvents(
+                apiKey = apiKey,
+                connectionId = connectionId,
+                channelIds = channelIds,
+                limit = limit,
+                offset = offset
+            )
+        )
+    }
+
     private fun <T> noConnectionIdError(): ErrorCall<T> {
         return ErrorCall(ChatError("setUser is either not called or not finished"))
     }
